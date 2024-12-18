@@ -56,6 +56,21 @@ class Movies(Base):
     Genre = Column(String(250))
     user = relationship(User)
 
+class Favorites_Characters(Base):
+    __tablename__ = 'Favorites Characters'
+    
+    ID = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    Characters_id = Column(String(250), ForeignKey('Characters.ID'))
+
+class Favorites_Movies(Base):
+    __tablename__ = 'Favorites Movies'
+    
+    ID = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    Movies_id = Column(String(250), ForeignKey('Movies.ID'))
+
+
     def to_dict(self):
         return {}
 
