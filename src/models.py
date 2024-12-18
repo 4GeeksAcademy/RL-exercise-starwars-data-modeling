@@ -20,41 +20,36 @@ class User(Base):
 
 class Characters(Base):
     __tablename__ = 'Characters'
-    
     ID = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
     Name = Column(String(250), nullable=False)
     Appearances = Column(String(250))
     Affiliations = Column(String(250))
     Location = Column(String(250))
     Gender = Column(String(250))
     Species = Column(String(250))
-    user = relationship(User)
 
 class Locations(Base):
     __tablename__ = 'Locations'
     
     ID = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
     Name = Column(String(250), ForeignKey('Characters.Location'))
     Planet = Column(String(250))
     Terrain = Column(String(250))
     Species = Column(String(250))
     Resource = Column(String(250))
     Affiliations = Column(String(250))
-    user = relationship(User)
+    Characters = relationship(Characters)
 
 class Movies(Base):
     __tablename__ = 'Movies'
     
     ID = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
     Name = Column(String(250), ForeignKey('Characters.Appearances'))
     Runtime = Column(String(250))
     Rating = Column(String(250))
     ReleaseDate = Column(String(250))
     Genre = Column(String(250))
-    user = relationship(User)
+    Characters = relationship(Characters)
 
 class Favorites_Characters(Base):
     __tablename__ = 'Favorites Characters'
